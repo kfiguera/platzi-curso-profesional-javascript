@@ -1,0 +1,70 @@
+<html>
+<head>
+    <title>Closures</title>
+</head>
+
+<body>
+<a href="/ejercicios/">Go back</a>
+<p><em>Abre la consola</em></p>
+<u>
+    <li>
+        <button class="call-to-action">Aprender</button>
+    </li>
+    <li>
+        <button class="call-to-action">Aprender más</button>
+    </li>
+    <li>
+        <button class="call-to-action">¡Nunca pares de aprender!</button>
+    </li>
+</u>‌
+<script>
+    // Establece this usando call
+    function saludar() {
+        console.log(`Hola soy ${this.name} ${this.apellido}`)
+    }
+
+    const kevin = {
+        name: "Kevin",
+        apellido: "Figuera"
+    }
+    saludar.call(kevin);
+
+    function caminar(metros, direccion) {
+        console.log(`${this.name} camina ${metros} hacia ${direccion}.`);
+    }
+
+    caminar.call(kevin, 500, "Norte");
+
+    // Establece this usando apply
+
+    caminar.apply(kevin, [500, "Sur"]);
+
+    const valores = [500, "Este"];
+    caminar.apply(kevin, valores);
+
+    // Establece this usando bind
+    const alejandro = {
+        name: "Alejandro",
+        apellido: "Rodriguez"
+    };
+    alejandro.saludar = saludar.bind(alejandro);
+    alejandro.saludar();
+
+    //alejandro.caminar = caminar.bind(alejandro);
+    //alejandro.caminar(800,"Norte");
+    //alejandro.caminar = caminar.bind(alejandro,800,"Norte");
+    //alejandro.caminar();
+    alejandro.caminar = caminar.bind(alejandro, 800);
+    alejandro.caminar("Sur");
+
+    //Cuando es util usar uno de estos metodos
+    const buttons = document.getElementsByClassName('call-to-action');
+    // buttons.forEach(button => {
+    //     button.onclick = () => { alert('nunca pares de aprender')};
+    // });
+    Array.prototype.forEach.call(buttons,button => {
+         button.onclick = () => { alert('nunca pares de aprender') };
+    });
+</script>
+</body>
+</html>
