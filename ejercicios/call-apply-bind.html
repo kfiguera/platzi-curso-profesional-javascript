@@ -1,70 +1,67 @@
 <html>
-<head>
-    <title>Closures</title>
-</head>
+  <head>
+    <title>
+      Function.prototype.call, Function.prototype.apply, Function.prototype.bind
+    </title>
+  </head>
 
-<body>
-<a href="/ejercicios/">Go back</a>
-<p><em>Abre la consola</em></p>
-<u>
-    <li>
-        <button class="call-to-action">Aprender</button>
-    </li>
-    <li>
-        <button class="call-to-action">Aprender más</button>
-    </li>
-    <li>
-        <button class="call-to-action">¡Nunca pares de aprender!</button>
-    </li>
-</u>‌
-<script>
-    // Establece this usando call
-    function saludar() {
-        console.log(`Hola soy ${this.name} ${this.apellido}`)
-    }
+  <body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola</em></p>
 
-    const kevin = {
-        name: "Kevin",
-        apellido: "Figuera"
-    }
-    saludar.call(kevin);
+    <ul>
+      <li><button class="call-to-action">Aprender</button></li>
+      <li><button class="call-to-action">Aprender Más</button></li>
+      <li><button class="call-to-action">¡Nunca parar de Aprender!</button></li>
+    </ul>
 
-    function caminar(metros, direccion) {
-        console.log(`${this.name} camina ${metros} hacia ${direccion}.`);
-    }
+    <script>
+      // Establece `this` usando `call`
+      function saludar() {
+        console.log(`Hola. Soy ${this.name} ${this.apellido}`);
+      }
 
-    caminar.call(kevin, 500, "Norte");
+      const richard = {
+        name: 'Richard',
+        apellido: 'Kaufman López',
+      };
 
-    // Establece this usando apply
+      saludar.call(richard);
 
-    caminar.apply(kevin, [500, "Sur"]);
+      // Establece `this` usando `call` y pasar argumentos a la función
+      function caminar(metros, direccion) {
+        console.log(`${this.name} camina ${metros} metros hacia ${direccion}.`);
+      }
 
-    const valores = [500, "Este"];
-    caminar.apply(kevin, valores);
+      caminar.call(richard, 400, 'norte');
 
-    // Establece this usando bind
-    const alejandro = {
-        name: "Alejandro",
-        apellido: "Rodriguez"
-    };
-    alejandro.saludar = saludar.bind(alejandro);
-    alejandro.saludar();
+      // Establece `this` usando `apply` y pasar argumentos a la función
+      const valores = [800, 'noreste'];
+      caminar.apply(richard, valores);
 
-    //alejandro.caminar = caminar.bind(alejandro);
-    //alejandro.caminar(800,"Norte");
-    //alejandro.caminar = caminar.bind(alejandro,800,"Norte");
-    //alejandro.caminar();
-    alejandro.caminar = caminar.bind(alejandro, 800);
-    alejandro.caminar("Sur");
+      /*
+        Call - comma
+        Apply - arreglo
+      */
 
-    //Cuando es util usar uno de estos metodos
-    const buttons = document.getElementsByClassName('call-to-action');
-    // buttons.forEach(button => {
-    //     button.onclick = () => { alert('nunca pares de aprender')};
-    // });
-    Array.prototype.forEach.call(buttons,button => {
-         button.onclick = () => { alert('nunca pares de aprender') };
-    });
-</script>
-</body>
+      // Establecer `this` en una nueva función usando `bind`
+      const daniel = { name: 'Daniel', apellido: 'Sánchez' };
+      const danielSaluda = saludar.bind(daniel);
+      danielSaluda();
+
+      const danielCamina = caminar.bind(daniel, 2000);
+      danielCamina('oeste');
+
+      // Cuándo es útil usar uno de estos métodos
+      const buttons = document.getElementsByClassName('call-to-action');
+      // buttons.forEach(button => {
+      //   button.onclick = () => alert('Nunca pares de aprender!');
+      // });
+
+      // NodeList
+      Array.prototype.forEach.call(buttons, button => {
+        button.onclick = () => alert('Nunca pares de aprender!');
+      });
+    </script>
+  </body>
 </html>
