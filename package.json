@@ -1,25 +1,18 @@
 {
-  "name": "platzi-curso-profesional-javascript",
+  "name": "platzi-media-player",
   "version": "1.0.0",
-  "description": "Repositorio del Curso Profesional de JavaScript de Platzi",
-  "main": "index.js",
+  "description": "Proyecto del Curso Profesional de JavaScript de la Escuela de JavaScript de Platzi.",
+  "license": "MIT",
+  "author": "Richard B. Kaufman López <richardbkaufman@gmail.com>",
+  "keywords": [
+    "platzi"
+  ],
   "scripts": {
     "start": "parcel index.html ejercicios/index.html ejercicios/**/*.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kfiguera/platzi-curso-profesional-javascript.git"
-  },
-  "keywords": [],
-  "author": "Kevin Figuera <kfiguera@smartwebtools.net>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kfiguera/platzi-curso-profesional-javascript/issues"
-  },
-  "homepage": "https://github.com/kfiguera/platzi-curso-profesional-javascript#readme",
   "devDependencies": {
-    "parcel-bundler": "^1.12.5",
-    "typescript": "^4.5.4"
+    "parcel-bundler": "^1.12.3",
+    "typescript": "^3.5.3"
   },
   "browserslist": [
     "last 1 Chrome version"

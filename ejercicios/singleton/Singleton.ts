@@ -1,16 +1,17 @@
 class Singleton {
-    private static instance: Singleton;
+  private static instance: Singleton;
 
-    private constructor() {
-        //init
+  private constructor() {
+    // init
+  }
+
+  static getInstance() {
+    if (!Singleton.instance) {
+      Singleton.instance = new Singleton();
     }
 
-    static getInstance() {
-        if (!Singleton.instance) {
-            Singleton.instance = new Singleton();
-        }
-        return Singleton.instance;
-    }
+    return Singleton.instance;
+  }
 }
 
 export default Singleton;
